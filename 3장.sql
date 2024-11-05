@@ -60,3 +60,146 @@ INSERT INTO buy VALUES(NULL, 'MMU', '지갑', NULL, 30, 4);
 SELECT * FROM member;
 SELECT * FROM buy;
 
+select mem_name from member;
+
+select addr "주소", debut_date "데뷔날짜", mem_name "멤버이름" from member order by "데뷔날짜" asc;
+
+select * from member where mem_name = '블랙핑크';
+select * from member where mem_number = 4;
+
+select mem_id, mem_name
+	from member
+	where height <= 162;
+
+select mem_name, height, mem_number
+	from member
+	where height >= 165 and mem_number > 6;
+
+select mem_name, height
+	from member
+	where height >= 163 and height <= 165;
+    
+select mem_name, height
+	from member
+    where height between 163 and 165;
+    
+select mem_name, addr 
+	from member
+	where addr in('경기', '전남', '경남');
+        
+select mem_name, addr
+	from member
+	where addr = '경기' or addr = '전남' or addr = '경남';
+        
+select mem_name, addr
+	from member
+	where mem_name like '우%';
+        
+select mem_id, mem_name, debut_date
+	from member
+	order by debut_date asc;
+	
+select mem_id, mem_name, debut_date, height
+	from member
+	where height >= 164
+	order by height desc;
+	
+select * 
+	from member
+	limit 3;
+	
+select * 
+	from member
+	order by height desc
+	limit 3;
+	
+select mem_name, debut_date
+	from member
+	order by debut_date
+	limit 3;
+   
+select mem_name, height
+From member
+order by height desc
+limit 3, 2;
+
+select count(distinct addr)
+	from member; 
+	
+select mem_id, amount 
+	from buy 
+	order by mem_id;
+	
+select mem_id "회원 아뒤", sum(amount) 
+	from buy 
+	group by mem_id;
+select mem_id "회원 아이디", sum(amount) "총 구매 갯수" 
+	from buy 
+	group by mem_id;
+select mem_id "회원 아이디", sum(price*amount) "총 구매 금액" 
+	from buy 
+	group by mem_id;
+        
+select avg(amount) "평균 구매갯수" from buy;
+
+select mem_id, avg(amount) "평균 구매갯수" from buy group by mem_id;
+
+select count(*) from member;
+select count(phone1) "연락처가 있는 회원 " from member;
+
+select mem_id "회원아이디", sum(price*amount) "총구메 금액" 
+	from buy
+	group by mem_id;
+
+select mem_id "회원아이기", sum(price*amount) "총 구매 금액"
+	from but
+	where sum(price * amount) > 1000
+	group by mem_id;
+
+select mem_id "회원아이기", sum(price*amount) "총 구매 금액"
+	from buy
+	group by mem_id
+	having sum(price * amount) > 1000;
+
+create table hongong1 (
+	toy_id int, 
+	toy_name char(4),
+	age int
+);
+
+insert into hongong1 values(1, '우디', 25);
+insert into hongong1(toy_id, toy_name) values(2, '버즈');
+insert into hongong1(toy_name, age, toy_id) values('제시', 20, 3);
+
+select * from hongong1;
+
+create table hongong2(
+	toy_id int auto_increment primary key,
+	toy_name char(4),
+	age int
+);
+
+insert into hongong2 values(null, '보핍', 25);
+insert into hongong2 values(null, '슬링키', 22);
+insert into hongong2 values(null, '렉스', 21);
+
+select last_insert_id();
+
+alter table hongong2 auto_increment = 100;
+insert into hongong2 values (null, '재남', 35);
+select * from hongong2;
+
+show global variables; 
+
+use world;
+select count(*) from city;
+
+select * from city limit 5;
+
+create table city_popul (
+	city_name varchar(50),
+    population int);
+    
+insert into city_popul select name, Population from city;
+
+select * from city_popul;
