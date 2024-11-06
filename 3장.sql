@@ -1,6 +1,11 @@
 create database market_db;
 
 use market_db;
+show tables;
+desc member;
+select * from member;
+use login_crud;
+drop database test9;
 
 -- use 명령어를 사용하면 테이블 이름만 명시해도 된다.
 use market_db;
@@ -167,11 +172,15 @@ create table hongong1 (
 	age int
 );
 
+drop table hongong1;
+
 insert into hongong1 values(1, '우디', 25);
 insert into hongong1(toy_id, toy_name) values(2, '버즈');
 insert into hongong1(toy_name, age, toy_id) values('제시', 20, 3);
 
 select * from hongong1;
+
+drop table hongong2;
 
 create table hongong2(
 	toy_id int auto_increment primary key,
@@ -202,4 +211,14 @@ create table city_popul (
     
 insert into city_popul select name, Population from city;
 
-select * from city_popul;
+select * from city_popul limit 5;
+
+update city_popul
+	set population = population / 10000;
+    
+delete from city_popul
+	where city_name like 'new%';
+    
+delete from city_popul
+	where city_name like 'new%' limit 5;
+    

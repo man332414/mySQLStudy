@@ -5,6 +5,8 @@ use shop_db;
 -- DDL : 데이터베이스 조회하기 (Read)
 show databases;
 
+show tables;
+
 -- DDL : 데이터베이스 수정하기
 ALTER database `shop_db`  DEFAULT CHARACTER SET utf8  DEFAULT COLLATE utf8_unicode_ci ;
 
