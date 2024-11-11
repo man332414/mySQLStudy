@@ -143,6 +143,65 @@ delimiter ;
 
 call cursor_proc();
 
+use market_db;
+
+create table if not exists trigger_table
+(
+  id int,
+  txt varchar(10)
+);
+
+insert into trigger_table values(1, '레드벨벳');
+insert into trigger_table values(2, '있지');
+insert into trigger_table values(3, '블랙핑크');
+
+drop trigger if exists myTrigger;
+delimiter $$
+create trigger myTrigger
+	after delete
+    on trigger_table
+    for each row
+begin
+	set @msg = '가수 그룹이 삭제됨';
+end $$
+delimiter ;
+
+set @msg = '';
+
+insert into trigger_table values(4, '마마무');
+
+select @msg;
+
+update trigger_table set txt = '블핑' where txt = '블랙핑크';
+
+select @msg;
+
+delete from trigger_table where id = 4;
+select @msg;
+
+select * from OLD;
+
+use market_db;
+
+create table singer
+(
+	select mem_id, mem_name, mem_number, addr from member
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
